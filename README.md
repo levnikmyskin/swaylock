@@ -6,44 +6,14 @@ protocol.
 
 See the man page, `swaylock(1)`, for instructions on using swaylock.
 
-## Release Signatures
+## About this fork
+This is a fork of swaylock, where I simply added (copied from swaylock-effects, actually, which is abandoned) the possibility of having a clock in swaylock.
+To enable it, config options are the same as in swaylock-effects.
 
-Releases are signed with [E88F5E48](https://keys.openpgp.org/search?q=34FF9526CFEF0E97A340E2E40FDE7BE0E88F5E48)
-and published [on GitHub](https://github.com/swaywm/swaylock/releases). swaylock
-releases are managed independently of sway releases.
+When building on archlinux, use `arch-meson` instead of `meson`.
 
-## Installation
+**I MAKE NO GUARANTEES ON MANTAINING THIS FORK**.
 
-### From Packages
+For everything else, refer to [swaylock](https://github.com/swaywm/swaylock).
 
-Swaylock is available in many distributions. Try installing the "swaylock"
-package for yours.
 
-### Compiling from Source
-
-Install dependencies:
-
-* meson \*
-* wayland
-* wayland-protocols \*
-* libxkbcommon
-* cairo
-* gdk-pixbuf2 \*\*
-* pam (optional)
-* [scdoc](https://git.sr.ht/~sircmpwn/scdoc) (optional: man pages) \*
-* git \*
-
-_\* Compile-time dep_  
-_\*\* Optional: required for background images other than PNG_
-
-Run these commands:
-
-    meson build
-    ninja -C build
-    sudo ninja -C build install
-
-On systems without PAM, you need to suid the swaylock binary:
-
-    sudo chmod a+s /usr/local/bin/swaylock
-
-Swaylock will drop root permissions shortly after startup.
