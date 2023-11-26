@@ -1148,6 +1148,12 @@ void log_init(int argc, char **argv) {
   swaylock_log_init(LOG_ERROR);
 }
 
+static void timer_render(void *data) {
+  struct swaylock_state *state = (struct swaylock_state *)data;
+  damage_state(state);
+  loop_add_timer(state->eventloop, 1000, timer_render, state);
+}
+
 int main(int argc, char **argv) {
   log_init(argc, argv);
   initialize_pw_backend(argc, argv);
@@ -1307,6 +1313,8 @@ int main(int argc, char **argv) {
   loop_add_fd(state.eventloop, get_comm_reply_fd(), POLLIN, comm_in, NULL);
 
   loop_add_fd(state.eventloop, sigusr_fds[0], POLLIN, term_in, NULL);
+
+  loop_add_timer(state.eventloop, 1000, timer_render, &state);
 
   struct sigaction sa;
   sa.sa_handler = do_sigusr;
