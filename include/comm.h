@@ -5,12 +5,12 @@
 
 struct swaylock_password;
 
-bool spawn_comm_child(void);
-ssize_t read_comm_request(char **buf_ptr);
-bool write_comm_reply(bool success);
+bool    spawn_comm_child(void);
+ssize_t read_comm_request(char** buf_ptr);
+bool    write_comm_reply(bool success);
 // Requests the provided password to be checked. The password is always cleared
 // when the function returns.
-bool write_comm_request(struct swaylock_password *pw);
+bool write_comm_request(struct swaylock_password* pw);
 bool read_comm_reply(void);
 // FD to poll for password authentication replies.
 int get_comm_reply_fd(void);
